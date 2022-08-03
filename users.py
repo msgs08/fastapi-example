@@ -3,7 +3,7 @@ urls:
 * https://fastapi.tiangolo.com/tutorial/security/oauth2-jwt/
 * https://github.com/samuelcolvin/pydantic/issues/2125
 """
-
+import time
 from datetime import datetime, timedelta
 from typing import Union
 
@@ -16,6 +16,7 @@ from pydantic import BaseModel, Field
 # to get a string like this run:
 # openssl rand -hex 32
 from pydantic.class_validators import validator
+from starlette.requests import Request
 
 SECRET_KEY = "09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7"
 ALGORITHM = "HS256"
@@ -177,3 +178,12 @@ async def login_for_access_token(user: UserCreate):
     fake_users_db[user.username] = user.dict()
     user
     return user
+
+
+@app.middleware("http")
+async def add_process_time_header(request: Request, call_next):
+    start_time = time.time()
+    response = await call_next(request)
+    process_time = time.time() - start_time
+    response.headers["X-Process-Time"] = str(process_time)
+    return response
