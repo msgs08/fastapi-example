@@ -1,3 +1,8 @@
+"""
+TODO: handle errors: 404
+* response example
+"""
+
 from typing import List
 
 from fastapi import APIRouter, HTTPException, Depends
@@ -28,7 +33,10 @@ async def read_item(
         db: Session = Depends(get_db),
 
 ):
-    return db.query(models.Item).get(item_id)
+    db_item = db.query(models.Item).get(item_id)
+    if not db_item:
+        raise HTTPException(status_code=404, detail="Item not found")
+    return db_item
 
 
 @router.patch(
