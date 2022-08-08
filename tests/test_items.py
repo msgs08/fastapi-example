@@ -1,13 +1,14 @@
+"""
+run command:
+pytest -v tests/test_items.py::test_get_items
+"""
+
 from fastapi.testclient import TestClient
 
 from api.main import app
 from api.routers.items import fake_items_db
 
 client = TestClient(app)
-
-
-
-
 
 
 def test_get_items():

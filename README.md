@@ -9,3 +9,12 @@ SqlLite
 
 Dependencies:
 * SQLAlchemy
+
+
+
+
+## Create a virtual environment using Python's venv module
+```bash
+python -m venv env
+source ./env/bin/activate
+```
