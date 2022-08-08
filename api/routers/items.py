@@ -1,40 +1,65 @@
-from fastapi import APIRouter, Depends, HTTPException
+from typing import List
 
-from api.dependencies import get_token_header
+from fastapi import APIRouter, HTTPException, Depends
+from sqlalchemy.orm import Session
+
+from api import schemas, models
+from api.dependencies import get_db
 
 router = APIRouter(
     prefix="/items",
     tags=["items"],
-    dependencies=[Depends(get_token_header)],
+    # dependencies=[Depends(get_token_header)],
     responses={404: {"description": "Not found"}},
 )
 
-fake_items_db = {
-    "plumbus": {"name": "Plumbus"},
-    "gun": {"name": "Portal Gun"},
-}
+
+@router.get("/", response_model=List[schemas.Item])
+async def read_items(
+        db: Session = Depends(get_db),
+
+):
+    return db.query(models.Item).all()
 
 
-@router.get("/")
-async def read_items():
-    return fake_items_db
+@router.get("/{item_id}/", response_model=schemas.Item)
+async def read_item(
+        item_id: str,
+        db: Session = Depends(get_db),
+
+):
+    return db.query(models.Item).get(item_id)
 
 
-@router.get("/{item_id}")
-async def read_item(item_id: str):
-    if item_id not in fake_items_db:
-        raise HTTPException(status_code=404, detail="Item not found")
-    return {"name": fake_items_db[item_id]["name"], "item_id": item_id}
-
-
-@router.put(
-    "/{item_id}",
+@router.patch(
+    "/{item_id}/",
     tags=["custom"],
     responses={403: {"description": "Operation forbidden"}},
+    response_model=schemas.Item,
 )
-async def update_item(item_id: str):
-    if item_id != "plumbus":
-        raise HTTPException(
-            status_code=403, detail="You can only update the item: plumbus"
-        )
-    return {"item_id": item_id, "name": "The great Plumbus"}
+async def update_item(
+        item_id: str,
+        item: schemas.ItemToUpdate,
+        db: Session = Depends(get_db),
+):
+    db_item = db.query(models.Item).get(item_id)
+    data_to_update = item.dict(exclude_unset=True)
+    for key, val in data_to_update.items():
+        setattr(db_item, key, val)
+    db.commit()
+    # db.refresh(db_item)
+    return db_item
+
+
+@router.post("/", response_model=schemas.Item)
+def create_item(
+        item: schemas.ItemToCreate,
+        db: Session = Depends(get_db),
+
+):
+    # db_item = models.Item(**item.dict(), owner_id=user_id)
+    db_item = models.Item(**item.dict())
+    db.add(db_item)
+    db.commit()
+    # db.refresh(db_item) # redundancy
+    return db_item
