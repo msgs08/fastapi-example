@@ -5,11 +5,11 @@ TODO: handle errors: 404
 
 from typing import List
 
-from fastapi import APIRouter, HTTPException, Depends
+from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
 from api import schemas, models
-from api.dependencies import get_db
+from api.dependencies import get_db, get_item_by_id
 
 router = APIRouter(
     prefix="/items",
@@ -29,13 +29,8 @@ async def read_items(
 
 @router.get("/{item_id}/", response_model=schemas.Item)
 async def read_item(
-        item_id: str,
-        db: Session = Depends(get_db),
-
+        db_item: models.Item = Depends(get_item_by_id),
 ):
-    db_item = db.query(models.Item).get(item_id)
-    if not db_item:
-        raise HTTPException(status_code=404, detail="Item not found")
     return db_item
 
 
@@ -46,16 +41,14 @@ async def read_item(
     response_model=schemas.Item,
 )
 async def update_item(
-        item_id: str,
-        item: schemas.ItemToUpdate,
+        request_item: schemas.ItemToUpdate,
+        db_item: models.Item = Depends(get_item_by_id),
         db: Session = Depends(get_db),
 ):
-    db_item = db.query(models.Item).get(item_id)
-    data_to_update = item.dict(exclude_unset=True)
+    data_to_update = request_item.dict(exclude_unset=True)
     for key, val in data_to_update.items():
         setattr(db_item, key, val)
     db.commit()
-    # db.refresh(db_item)
     return db_item
 
 
@@ -69,5 +62,4 @@ def create_item(
     db_item = models.Item(**item.dict())
     db.add(db_item)
     db.commit()
-    # db.refresh(db_item) # redundancy
     return db_item
