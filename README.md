@@ -5,7 +5,7 @@ Here is the simplest usage example of FastApi framework
 
 
 Database:
-SqlLite
+* SqlLite
 
 Dependencies:
 * SQLAlchemy
@@ -13,8 +13,12 @@ Dependencies:
 
 
 
-## Create a virtual environment using Python's venv module
+## Create a virtual environment
 ```bash
 python -m venv env
 source ./env/bin/activate
+cp .env.example .env
 ```
+
+## Setup env variables
+create a file `.env` similar to `.env.example`
