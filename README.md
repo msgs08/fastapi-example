@@ -12,13 +12,15 @@ Dependencies:
 
 
 
-
 ## Create a virtual environment
 ```bash
 python -m venv env
 source ./env/bin/activate
-cp .env.example .env
 ```
 
 ## Setup env variables
-create a file `.env` similar to `.env.example`
+create a file `.env` similar to `.env.example` via command
+```bash
+cp .env.example .env
+```
+then update the file `.env`

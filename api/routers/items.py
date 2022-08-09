@@ -52,7 +52,9 @@ async def update_item(
     return db_item
 
 
-@router.post("/", response_model=schemas.Item)
+# doc: https://fastapi.tiangolo.com/tutorial/response-status-code/#response-status-code
+# doc: https://fastapi.tiangolo.com/advanced/response-change-status-code/
+@router.post("/", response_model=schemas.Item, status_code=201)
 def create_item(
         item: schemas.ItemToCreate,
         db: Session = Depends(get_db),
