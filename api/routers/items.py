@@ -14,7 +14,6 @@ from api.dependencies import get_db, get_item_by_id
 router = APIRouter(
     prefix="/items",
     tags=["items"],
-    # dependencies=[Depends(get_token_header)],
     responses={404: {
         "description": "Not found",
         "model": schemas.Item,  # TODO: dummy response model
@@ -63,7 +62,6 @@ def create_item(
         db: Session = Depends(get_db),
 
 ):
-    # db_item = models.Item(**item.dict(), owner_id=user_id)
     db_item = models.Item(**item.dict())
     db.add(db_item)
     db.commit()

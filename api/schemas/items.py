@@ -6,7 +6,7 @@ instead of this:
 id = data["id"]
 """
 
-from typing import List, Union
+from typing import Union
 
 from pydantic import BaseModel
 
@@ -27,8 +27,6 @@ class ItemToUpdate(BaseItem):
 
 class Item(BaseItem):
     id: int
-
-    # owner_id: int
 
     class Config:
         orm_mode = True
