@@ -1,24 +1,23 @@
-# fastapi-project-template
+The simplest example of using FastApi framework
 
-Here is the simplest usage example of FastApi framework
+Inspired by: https://fastapi.tiangolo.com/
 
+### Targets
+* Dockerize
 
-
-Database:
-* SqlLite
-
-Dependencies:
+### Dependencies:
 * SQLAlchemy
 
+### Database:
+* SqlLite
 
-
-## Create a virtual environment
+### Create a virtual environment
 ```bash
 python -m venv env
 source ./env/bin/activate
 ```
 
-## Setup env variables
+### Setup env variables
 create a file `.env` similar to `.env.example` via command
 ```bash
 cp .env.example .env
