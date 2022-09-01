@@ -35,6 +35,8 @@ jobs:
 #          oskardudycz/eventsourcing.nodejs.simple:latest
 #          ghcr.io/oskardudycz/eventsourcing.nodejs/simple:latest
         # build on feature branches, push only on main branch
+        tags: ${{ steps.meta.outputs.tags }}
+#        labels: ${{ steps.meta.outputs.labels }}
         push: ${{ github.ref == 'refs/heads/main' }}
 
 #    - name: Build the Docker image
