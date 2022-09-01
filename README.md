@@ -1,4 +1,6 @@
-The simplest example of using FastApi framework
+### The simplest example of using FastApi framework
+
+![Docker Image CI](https://github.com/mtdor/fastapi-items-example/actions/workflows/build-publish-image.yml/badge.svg)
 
 Inspired by: https://fastapi.tiangolo.com/
 
@@ -38,4 +40,9 @@ sudo docker build -t fastapi-items-example .
 
 # run container
 sudo docker run -d --name fastapi-items-example -p 80:80 fastapi-items-example
+```
+
+## CI: Pull Image
+```shell
+docker pull ghcr.io/mtdor/fastapi-items-example:latest
 ```
