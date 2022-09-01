@@ -13,11 +13,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # clone the repo
+
     - name: Checkout code
       uses: actions/checkout@v3
 
-    # auth step
     - name: Login to Github Packages
       uses: docker/login-action@v2
       with:
@@ -30,12 +29,5 @@ jobs:
       with:
         # relative path to the place where source code with Dockerfile is located
         context: .
-        # Note: tags has to be all lower-case
-        tags: ghcr.io/${{ github.actor }}/fastapi-items-example:latest
-        # build on feature branches, push only on main branch
-#        tags: ${{ steps.meta.outputs.tags }}
-#        labels: ${{ steps.meta.outputs.labels }}
+        tags: ghcr.io/${{ github.actor }}/${{ github.repository }}:latest
         push: ${{ github.ref == 'refs/heads/main' }}
-
-#    - name: Build the Docker image
-#      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
