@@ -31,11 +31,9 @@ jobs:
         # relative path to the place where source code with Dockerfile is located
         context: .
         # Note: tags has to be all lower-case
-#        tags: |
-#          oskardudycz/eventsourcing.nodejs.simple:latest
-#          ghcr.io/oskardudycz/eventsourcing.nodejs/simple:latest
+        tags: ghcr.io/${{ github.actor }}/fastapi-items-example:latest
         # build on feature branches, push only on main branch
-        tags: ${{ steps.meta.outputs.tags }}
+#        tags: ${{ steps.meta.outputs.tags }}
 #        labels: ${{ steps.meta.outputs.labels }}
         push: ${{ github.ref == 'refs/heads/main' }}
 
