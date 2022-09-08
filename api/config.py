@@ -10,7 +10,7 @@ class Settings(BaseSettings):
     sqlalchemy_url: str
 
     class Config:
-        env_file = ".env"
+        env_file = ".env_dev"
 
 
 settings = Settings()
