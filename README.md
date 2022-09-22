@@ -39,7 +39,7 @@ source ./env/bin/activate
 ### Setup env variables
 create a file `.env` similar to `.env.example` via command
 ```bash
-cp .env.example .env_dev
+cp .env.dev_example .env
 ```
 then update the file `.env`
 
