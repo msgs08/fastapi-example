@@ -13,7 +13,7 @@ RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 # --upgrade - install the certain version from the file
 
 # put this near the end, to optimize the container image build times
-COPY .env.dev_example /code/.env
+# COPY .env.dev_example /code/.env
 COPY ./api /code/api
 
 CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "80"]

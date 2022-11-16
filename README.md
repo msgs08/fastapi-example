@@ -48,11 +48,10 @@ then update the file `.env`
 ## Run server via Docker
 ```shell
 # build image
-sudo docker build -t fastapi-api-example .
+sudo docker build -t fastapi-api-example-mysql .
 
 # run container
-sudo docker run -d --name fastapi-api-example -p 80:80 fastapi-api-example
-
+sudo docker run -d --name fastapi-api-example-mysql -p 80:80 fastapi-api-example-mysql
 ```
 
 ## Run server via PyCharm
