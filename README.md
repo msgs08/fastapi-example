@@ -1,13 +1,13 @@
 ### The simplest example of using FastAPI framework
 
-![Docker Image CI](https://github.com/mtdor/fastapi-items-example/actions/workflows/build-publish-image.yml/badge.svg)
+![Docker Image CI](https://github.com/mtdor/fastapi-api-example/actions/workflows/build-publish-image.yml/badge.svg)
 
 
 ### Objectives
 * CRUD
 * Dockerize
 
-### Requirements:
+### Prerequisites:
 Python 3.6+
 * Uvicorn
 * FastAPI
@@ -46,10 +46,11 @@ then update the file `.env`
 ## Run server via Docker
 ```shell
 # build image
-sudo docker build -t fastapi-items-example .
+sudo docker build -t fastapi-api-example .
 
 # run container
-sudo docker run -d --name fastapi-items-example -p 80:80 fastapi-items-example
+sudo docker run -d --name fastapi-api-example -p 80:80 fastapi-api-example
+
 ```
 
 ## Run server via PyCharm
@@ -65,7 +66,9 @@ configuration file: [.run/UvicornServer.run.xml](.run/UvicornServer.run.xml)
 
 ### Pull Image
 ```shell
-docker pull ghcr.io/mtdor/fastapi-items-example:latest
+docker pull ghcr.io/mtdor/fastapi-api-example:latest
+# run container
+docker run -d --name fastapi-api-example -p 80:80 ghcr.io/mtdor/fastapi-api-example
 ```
 
 
