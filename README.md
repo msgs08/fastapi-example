@@ -1,13 +1,15 @@
-### The simplest example of using FastAPI framework
-
 ![Docker Image CI](https://github.com/mtdor/fastapi-api-example/actions/workflows/build-publish-image.yml/badge.svg)
 
 
-### Objectives
+## Objectives!
 * CRUD
 * Dockerize
 
-### Prerequisites:
+## Entry Points!
+* http://127.0.0.1:80/docs
+* http://127.0.0.1:80/redoc
+
+## Prerequisites!
 Python 3.6+
 * Uvicorn
 * FastAPI
