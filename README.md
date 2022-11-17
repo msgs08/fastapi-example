@@ -76,3 +76,6 @@ docker run -d --name fastapi-api-example -p 80:80 ghcr.io/mtdor/fastapi-api-exam
 
 
 Inspired by: https://fastapi.tiangolo.com/
+
+Versions:
+* [docker+mysql](https://github.com/mtdor/fastapi-example/tree/mysql)
