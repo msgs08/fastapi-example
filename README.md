@@ -24,9 +24,7 @@ With passlib, you could even configure it to be able to read passwords created b
 pip install uvicorn[standard] fastapi[all] python-jose[cryptography] passlib[bcrypt] pytest
 ```
 
-## Run server via Shell
-
-### Create a virtual environment
+## Create a virtual environment
 ```bash
 python -m venv env
 source ./env/bin/activate
@@ -35,6 +33,8 @@ pip install -r requirements.txt
 
 ### Setup ENV variables
 Create a file `.env` or just copy and update example `.env.dev_example`
+
+## Run App Server via Shell
 ```shell
 uvicorn api.main:app --reload
 ```
