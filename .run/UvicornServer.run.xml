@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="UvicornServer" type="PythonConfigurationType" factoryName="Python">
-    <module name="fastapi-api-example" />
+    <module name="fastapi-example" />
     <option name="INTERPRETER_OPTIONS" value="" />
     <option name="PARENT_ENVS" value="true" />
     <envs>
