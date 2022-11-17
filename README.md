@@ -50,13 +50,6 @@ uvicorn api.main:app --reload
 
 configuration file: [.run/UvicornServer.run.xml](.run/UvicornServer.run.xml)
 
-## Pull Image
-```shell
-docker pull ghcr.io/mtdor/fastapi-api-example:latest
-# run container
-docker run -d --name fastapi-api-example -p 80:80 ghcr.io/mtdor/fastapi-api-example
-```
-
 ## Run  via Docker
 Some variables
 ```
