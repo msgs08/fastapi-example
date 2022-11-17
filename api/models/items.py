@@ -7,5 +7,5 @@ class Item(Base):
     __tablename__ = "items"
 
     id = Column(Integer, primary_key=True, index=True)
-    title = Column(String, index=True)
-    description = Column(String, index=True)
+    title = Column(String(50), index=True)
+    description = Column(String(256), index=True)
