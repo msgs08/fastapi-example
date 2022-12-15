@@ -1,10 +1,11 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="UvicornServer" type="PythonConfigurationType" factoryName="Python">
-    <module name="fastapi-items-example" />
+    <module name="fastapi-example" />
     <option name="INTERPRETER_OPTIONS" value="" />
     <option name="PARENT_ENVS" value="true" />
     <envs>
       <env name="PYTHONUNBUFFERED" value="1" />
+      <env name="SQLALCHEMY_URL_2" value="mysql+pymysql://root:secret@127.0.0.1:3308/fastapi_api_example_db?charset=utf8mb4" />
     </envs>
     <option name="SDK_HOME" value="$USER_HOME$/.pyenv/versions/fastApiItemsVenv3811/bin/python" />
     <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
